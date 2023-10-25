@@ -44,7 +44,7 @@ class DbConfigDao(Mapper):
             raise Exception("获取数据库配置失败")
 
     @staticmethod
-    @RedisHelper.up_cache("database:cache")
+    @RedisHelper.up_cache("database:Cache")
     async def insert_database(data: DatabaseForm, user: str):
         try:
             async with async_session() as session:
@@ -61,7 +61,7 @@ class DbConfigDao(Mapper):
             raise Exception("新增数据库配置失败")
 
     @staticmethod
-    @RedisHelper.up_cache("database:cache")
+    @RedisHelper.up_cache("database:Cache")
     async def update_database(data: DatabaseForm, user: str):
         try:
             async with async_session() as session:
@@ -77,7 +77,7 @@ class DbConfigDao(Mapper):
             raise Exception("编辑数据库配置失败")
 
     @staticmethod
-    @RedisHelper.up_cache("database:cache")
+    @RedisHelper.up_cache("database:Cache")
     async def delete_database(id: int, user: str):
         try:
             async with async_session() as session:
@@ -117,7 +117,7 @@ class DbConfigDao(Mapper):
             raise Exception("获取数据库配置失败")
 
     @staticmethod
-    @RedisHelper.cache("database:cache", expired_time=3600 * 3)
+    @RedisHelper.cache("database:Cache", expired_time=3600 * 3)
     async def query_database_tree():
         """
         方法会查询所有数据库表配置的信息, 不包括表信息
@@ -150,7 +150,7 @@ class DbConfigDao(Mapper):
             raise Exception(f"获取数据库配置详情失败: {err}")
 
     @staticmethod
-    @RedisHelper.cache("database:table:cache", expired_time=1800)
+    @RedisHelper.cache("database:table:Cache", expired_time=1800)
     async def get_tables(data: DatabaseForm):
         conn = await db_helper.get_connection(data.sql_type, data.host, data.port, data.username, data.password,
                                               data.database)

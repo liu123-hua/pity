@@ -76,6 +76,37 @@ class PityResponse(object):
         return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
 
     @staticmethod
+    def success_check_xb(data=None, code=0, msg="校验成功,存在可接量班级", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_jj(data=None, code=0, msg="校验成功,存在可接量批次", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    def success_divideResult_xb(data=None, code=0, msg="分班结果", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_xbFail(data=None, code=1, msg="校验成功,不存在可接量班级，请及时创建可接量班级", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_jjFail(data=None, code=1, msg="校验成功,不存在可接量批次，请及时创建可接量批次以及小班", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_goodsIdFail(data=None, code=0, msg="请输入存在的商品包ID", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_courseVersionIdFail(data=None, code=0, msg="请输入存在的课程版本ID", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
+    def success_check_goodsIdFail(data=None, code=0, msg="请输入存在的商品", exclude=()):
+        return PityResponse.encode_json(dict(code=code, msg=msg, data=data), *exclude)
+
+    @staticmethod
     def records(data: list, code=0, msg="操作成功"):
         return dict(code=code, msg=msg, data=PityResponse.model_to_list(data))
 

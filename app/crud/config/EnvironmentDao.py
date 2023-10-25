@@ -39,15 +39,18 @@ class EnvironmentDao(Mapper):
 
     @classmethod
     async def list_env(cls, page, size, name=None, exactly=False):
+        print("进入啦")
         try:
             search = [Environment.deleted_at == 0]
+            print("来啦",search)
+
             async with async_session() as session:
-                if name:
-                    search.append(Environment.name.like("%{}%".format(name)))
                 sql = select(Environment).where(*search)
                 query = await session.execute(sql)
+
                 if exactly:
                     data = query.scalars().all()
+                    print("heihei",str(data))
                     return data, len(data)
                 total = query.raw.rowcount
                 if total == 0:

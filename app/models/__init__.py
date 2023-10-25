@@ -23,7 +23,7 @@ create_database()
 # 同步engine
 # engine = create_engine(Config.SQLALCHEMY_DATABASE_URI, pool_recycle=1500)
 # 异步engine
-async_engine = create_async_engine(Config.ASYNC_SQLALCHEMY_URI, max_overflow=0, pool_size=20, pool_recycle=1500)
+async_engine = create_async_engine(Config.ASYNC_SQLALCHEMY_URI, max_overflow=0, pool_size=20, pool_recycle=3600,pool_pre_ping=True)
 
 # Session = sessionmaker(engine)
 
@@ -39,7 +39,7 @@ Base = declarative_base()
 class DatabaseHelper(object):
 
     def __init__(self):
-        # cache
+        # Cache
         self.connections = dict()
 
     async def get_connection(self, sql_type: int, host: str, port: int, username: str, password: str, database: str):

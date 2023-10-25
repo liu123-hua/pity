@@ -140,7 +140,7 @@ class Mapper(object):
         return s
 
     # @classmethod
-    # @RedisHelper.cache("dao")
+    # @RedisHelper.Cache("dao")
     # async def list_record(cls, condition=None, **kwargs):
     #     """
     #     通过查询条件获取数据，kwargs的key为参数名, value为参数值

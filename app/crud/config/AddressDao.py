@@ -9,7 +9,7 @@ from app.models.address import PityGateway
 class PityGatewayDao(Mapper):
 
     @staticmethod
-    # @RedisHelper.cache(f"gateway", 1800)
+    # @RedisHelper.Cache(f"gateway", 1800)
     async def query_gateway(env, name):
         async with async_session() as session:
             query = await session.execute(select(PityGateway).where(PityGateway.deleted_at == 0, PityGateway.env == env,

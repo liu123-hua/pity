@@ -4,6 +4,7 @@ from app.crud.config.EnvironmentDao import EnvironmentDao
 from app.handler.fatcory import PityResponse
 from app.routers import Permission, get_session
 from app.schema.environment import EnvironmentForm
+from app.utils import logger
 from config import Config
 
 router = APIRouter(prefix="/config")
@@ -12,7 +13,9 @@ router = APIRouter(prefix="/config")
 @router.get("/environment/list")
 async def list_environment(page: int = 1, size: int = 8, name: str = "", exactly=False,
                            user_info=Depends(Permission())):
+
     data, total = await EnvironmentDao.list_env(page, size, name, exactly)
+    print(data,total)
     return PityResponse.success_with_size(data=data, total=total)
 
 
